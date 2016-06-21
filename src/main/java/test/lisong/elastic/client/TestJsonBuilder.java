@@ -1,7 +1,5 @@
 package test.lisong.elastic.client;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 
 import org.elasticsearch.common.xcontent.XContentBuilder;

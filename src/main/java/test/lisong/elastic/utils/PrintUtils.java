@@ -3,6 +3,7 @@ package test.lisong.elastic.utils;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.update.UpdateResponse;
 
 public class PrintUtils {
 
@@ -32,5 +33,11 @@ public class PrintUtils {
 		String format = "索引名：%s， 类型：%s，文档ID:%s,是否找到文档：%s";
 		System.out.println(String.format(format, resp.getIndex(), resp.getType(),
 				resp.getId(), resp.isFound()));
+	}
+	
+	public static void showUpdateResponse(UpdateResponse resp) {
+		String format = "索引名：%s， 类型：%s，文档ID:%s,created：%s";
+		System.out.println(String.format(format, resp.getIndex(), resp.getType(),
+				resp.getId(), resp.isCreated()));
 	}
 }

@@ -21,6 +21,7 @@ public class TestIndex extends BaseTest {
 						.field("message", "trying out Elasticsearch").endObject())
 				.get();
 		System.out.println(response);
+		PrintUtils.showIndexResponse(response);
 	}
 	
 	@Test

@@ -8,12 +8,18 @@ import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.junit.Test;
 
+import test.lisong.elastic.utils.RandomUtils;
+
 /**
  * @author 李嵩
  * 测试批量操作
  */
 public class TestBuilk extends BaseTest {
-
+	String tagsStr = "名人名言,经典,励志,哲理,经典语录,格言,真理,理想,摘抄,爱情,谦虚,社会,随笔,骄傲,感情,珍惜,成功,方向,劳动,爱国,意志,希望,失败,唯美,感悟,青年,人民,朋友,思念,自由,生命,怀念,姐姐,友谊,感恩,幸福,奋斗,考验,期望,时间,卑鄙,歌词,古诗,习惯,艰苦,生活,甜蜜,父母,努力,梦想,回家,伤感,永远,情商,学习,老师,足球,朴素,家乡,宽容,赞美,做人,礼仪,敌人,雪,真实,人生,信用,坚持,自信,厄运,心感,女人,责任,景色,孤独,仁慈,感悟.读书,读书,男人,雨,温暖,拥抱,爱,惩罚,忧伤,失去,想念,坚强,智慧,天堂,心情,可恶,信任,自重,运动,无奈,伤心,悲剧,悲哀,勤奋,荣耀,远方,微笑,乐观,忠诚,愉快,快乐,青春,行动,沉潜,同情,精彩,心痛,喜欢,智商,心语,外貌,观察,曾经,恋爱,错过,逻辑,绝望,迷茫,悲观,兴趣,规律,电影台词,失望,吝啬,可爱,财富,名声,天赋,朴实,寂寞,美丽,昨天,创业,悲伤,天才,魅力,法律,安全,失恋,长大,以前,家,计划";
+	String godsStr = "举钵罗汉, 伏虎罗汉, 喜庆罗汉, 看门罗汉, 静坐罗汉, 长眉罗汉, 挖耳罗汉, 骑象罗汉, 乘鹿罗汉, 开心罗汉, 探手罗汉, 托塔罗汉, 芭蕉罗汉, 过江罗汉, 布袋罗汉, 降龙罗汉, 笑狮罗汉, 沈思罗汉";
+	String[] tags = tagsStr.split(",");
+	String[] gods = godsStr.split(",");
+	
 	@Test
 	public void testBulk() throws Exception {
 		BulkRequestBuilder bulkRequest = client.prepareBulk();
@@ -24,6 +30,9 @@ public class TestBuilk extends BaseTest {
 			                        .field("user", data[i].split("@").length >= 2 ? data[i].split("@")[1] : "无名氏")
 			                        .field("postDate", new Date())
 			                        .field("message", data[i])
+			                        .field("tags", randomTag())
+			                        .field("god", gods[RandomUtils.randomBound(gods.length)])
+			                        .field("viewed", RandomUtils.randomRange(10, 10000))
 			                    .endObject()
 			                  )
 			        );
@@ -38,6 +47,16 @@ public class TestBuilk extends BaseTest {
 			}
 		}
 		
+	}
+	
+	private String[] randomTag() {
+		int n = RandomUtils.randomBound(5);
+		String[] rtags = new String[n];
+		for (int i = 0; i < n; i++) {
+			rtags[i] = tags[RandomUtils.randomBound(tags.length)];
+		}
+		
+		return rtags;
 	}
 	
 	private String[] data = {

@@ -3,7 +3,7 @@ package test.lisong.elastic.utils;
 import java.io.IOException;
 import java.util.List;
 
-
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,6 +31,13 @@ public class JsonUtil {
         } catch (Exception e) {
             throw new Exception("json转换异常", e);
         }
+    }
+    public static String toJsonPretty(Object obj) throws Exception {
+    	try {
+			return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(obj);
+		} catch (JsonProcessingException e) {
+			 throw new Exception("json转换异常", e);
+		}
     }
 
     public static <T> T toObject(String json, Class<T> clazz) throws Exception {

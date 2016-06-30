@@ -20,6 +20,12 @@ public class TestIndicesManagement extends BaseTest {
 	private String indice = "docs";
 	private String type = "index";
 
+	/**
+	 * 创建索引
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testCreateIndices() throws Exception {
 		String indiceName = "docs_v0";
@@ -30,12 +36,24 @@ public class TestIndicesManagement extends BaseTest {
 		assertTrue(b);
 	}
 	
+	/**
+	 * 添加别名
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testAddAlias() throws Exception {
 		boolean b = ESUtils.addAlias("docs_v0", indice);
 		assertTrue(b);
 	}
 	
+	/**
+	 * 获取索引配置
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testGetSettings() throws Exception {
 		Map<String, String> settings = ESUtils.getSetting(indice);
@@ -43,6 +61,12 @@ public class TestIndicesManagement extends BaseTest {
 		assertFalse(settings.isEmpty());
 	}
 	
+	/**
+	 * 获取索引数据结构
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testGetMapping() throws Exception {
 		Map<String, String> mapping = ESUtils.getMapping(indice, type);
@@ -50,6 +74,12 @@ public class TestIndicesManagement extends BaseTest {
 		assertFalse(mapping.isEmpty());
 	}
 	
+	/**
+	 * 修改索引副本数量
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testChangeReplicas() throws Exception {
 		UpdateSettingsResponse resp = client.admin().indices().prepareUpdateSettings(indice)   
@@ -61,6 +91,12 @@ public class TestIndicesManagement extends BaseTest {
 		assertTrue(resp.isAcknowledged());
 	}
 	
+	/**
+	 * 删除索引
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 30, 2016
+	 */
 	@Test
 	public void testDeleteIndices() throws Exception {
 		boolean b = ESUtils.removeIndice("docs_v0");

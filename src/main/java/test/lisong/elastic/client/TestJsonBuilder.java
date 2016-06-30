@@ -6,6 +6,10 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.junit.Test;
 
+/**
+ * @author 李嵩
+ * 测试使用XContentBuilder 构建Json对象
+ */
 public class TestJsonBuilder {
 
 	@Test

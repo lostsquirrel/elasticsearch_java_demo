@@ -13,6 +13,11 @@ import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.junit.Test;
 
+/**
+ * @author 李嵩
+ * 批量处理器
+ * 可以配置 根据条数或字节大小来决定 每个批次的数据量
+ */
 public class TestBulkProcessor extends BaseTest {
 
 	@Test
@@ -40,9 +45,9 @@ public class TestBulkProcessor extends BaseTest {
 		            	
 		            } 
 		        })
-		        .setBulkActions(10) 
-		        .setBulkSize(new ByteSizeValue(1, ByteSizeUnit.KB)) 
-		        .setFlushInterval(TimeValue.timeValueSeconds(5)) 
+		        .setBulkActions(10) // 每个批次的最大数量
+		        .setBulkSize(new ByteSizeValue(1, ByteSizeUnit.KB)) // 每个批次的最大字节数
+		        .setFlushInterval(TimeValue.timeValueSeconds(5)) // 每批提交时间间隔
 		        .setConcurrentRequests(1) 
 		        .setBackoffPolicy(
 		            BackoffPolicy.exponentialBackoff(TimeValue.timeValueMillis(100), 3)) 

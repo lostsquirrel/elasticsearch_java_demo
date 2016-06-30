@@ -8,6 +8,10 @@ import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.junit.Test;
 
+/**
+ * @author 李嵩
+ * 测试批量操作
+ */
 public class TestBuilk extends BaseTest {
 
 	@Test

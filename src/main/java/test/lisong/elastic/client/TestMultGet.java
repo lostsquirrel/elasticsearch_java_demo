@@ -5,6 +5,10 @@ import org.elasticsearch.action.get.MultiGetItemResponse;
 import org.elasticsearch.action.get.MultiGetResponse;
 import org.junit.Test;
 
+/**
+ * @author 李嵩
+ * 测试从多个索引库或类型中，以ID获取数据
+ */
 public class TestMultGet extends BaseTest {
 
 	@Test

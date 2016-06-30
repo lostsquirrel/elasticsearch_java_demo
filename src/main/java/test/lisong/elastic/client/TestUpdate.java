@@ -23,10 +23,17 @@ public class TestUpdate extends BaseTest {
 		        .startObject()
 		            .field("age", "23")
 		        .endObject());
+				
 		UpdateResponse resp = client.update(updateRequest).get();
 		PrintUtils.showUpdateResponse(resp);
 	}
 	
+	/**
+	 * @author 李嵩
+	 * @throws Exception
+	 * @date Jun 29, 2016
+	 * 脚本未启用，些操作不可用
+	 */
 	@Test
 	public void testUpdateScript() throws Exception {
 		UpdateResponse resp = client.prepareUpdate("ttl", "doc", "1")
